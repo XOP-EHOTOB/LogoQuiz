@@ -116,7 +116,7 @@ const Statistic = ({ id, go, setPopout }) => {
             <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}>
                 <Icon20EducationOutline width={28} height={28}/>
                 <div>
-                    <p style={{margin: 0}}>{user?.progress?.length || 0} Угаданые команды</p>
+                    <p style={{margin: 0}}>{user?.progress?.length || 0} Угаданые логотипы</p>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Box sx={{ width: '100%', mr: 1 }}>
                         <LinearProgress variant="determinate" value={Math.round(

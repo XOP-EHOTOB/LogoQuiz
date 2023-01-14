@@ -65,7 +65,7 @@ const Shop = ({ id, go }) => {
 
     const shere = async () => {
         bridge.send('VKWebAppShowWallPostBox', {
-            message: 'Угадывай футбольные команды по логотипам используя свои знания в футболе!',
+            message: 'Угадывай футбольные логотипы по логотипам используя свои знания в футболе!',
             attachments: 'https://vk.com/quiz_footballcoin'
             })
             .then((data) => { 
@@ -89,14 +89,14 @@ const Shop = ({ id, go }) => {
     }
 
 
-    const pay = (key) => {
+    const pay = (key, items) => {
         bridge.send('VKWebAppShowOrderBox', { 
                 type: 'item',
                 item: key
             })
             .then((data) => {
               if (data.success) {
-                setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text={`Успешно! Начислено - ${key} голосов`}/>)
+                setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text={`Успешно! Начислено - ${items} голосов`}/>)
             }})
             .catch((error) => {
                 setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text='Произошла неизвестная ошибка!'/>)
@@ -140,42 +140,42 @@ const Shop = ({ id, go }) => {
         <div className='settings-menu'>
             <p>Доступно для покупки</p>
 
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item1') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item1', 29) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>29 подсказок за 3 голоса</p>
                 </div>
             </div>
 
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item2') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item2', 59) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>59 подсказок за 6 голосов</p>
                 </div>
             </div>
 
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item3') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item3', 149) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>149 подсказок за 12 голосов</p>
                 </div>
             </div>
             
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item4') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}}  onClick={() => { pay('item4', 309) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>309 подсказок за 24 голоса</p>
                 </div>
             </div>
 
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}} onClick={() => { pay('item5') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}} onClick={() => { pay('item5', 649) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>649 подсказок за 44 голоса</p>
                 </div>
             </div>
 
-            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}} onClick={() => { pay('item6') }}>
+            <div className='settings-menu-button' style={{gridTemplateColumns: '40px 1fr'}} onClick={() => { pay('item6', 999) }}>
                 <Icon20ShoppingCartOutline width={28} height={28}/>
                 <div>
                 <p style={{margin: 0}}>999 подсказок за 55 голоса</p>

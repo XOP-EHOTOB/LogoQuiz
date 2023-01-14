@@ -34,7 +34,7 @@ const GameMenu = ({ id, go }) => {
             data.progress.map(lvl => {
                 items.push(<div className='game-menu-item' key={Math.round(Math.random() * 1000000)} onClick={() => {
                     user.lvl < data.progress.indexOf(lvl) + 1 ?
-                    setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='warn' text='Отгадайте больше команд чтобы открыть!'/>) :
+                    setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='warn' text='Отгадайте больше логотипов чтобы открыть!'/>) :
                     startLvl(data.progress.indexOf(lvl))
                 }}>
                     <p>Уровень {items.length + 1}</p>
