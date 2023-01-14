@@ -5,7 +5,7 @@ const request = async (url, method = 'GET', body = null, headers = {}) => {
         headers['Content-Type'] = 'application/json'
       }
       
-      const responce = await fetch((process.env.NODE_ENV === 'development' ? 'https://localhost:2690/api/' :  'https://footballcoin.ru:2689/api/')  + url, {
+      const responce = await fetch((process.env.NODE_ENV === 'development' ? 'https://localhost:2690/api/' :  'https://footballcoin.ru:2690/api/')  + url, {
         method,
         body,
         headers,
