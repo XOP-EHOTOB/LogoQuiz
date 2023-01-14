@@ -1,0 +1,30 @@
+.settings-menu {
+    margin-bottom: 10px;
+}
+
+.settings-menu > p {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 10px;
+    opacity: 0.7;
+}
+
+.settings-menu-button {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 34px 1fr 50px;
+    background-color: var(--button_content);
+    border-radius: 8px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.clicked:active {
+    background-color: var(--button_content_active);
+}
+
+.settings-menu-button > p {
+    margin: 0;
+    margin-left: 5px;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "logoquiz",
+  "version": "2.0.0",
+  "description": "",
+  "main": "LogoQuiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon start LogoQuiz.js",
+    "start": "pm2 start LogoQuiz.js",
+    "client": "npm run start --prefix client",
+    "shop": "npm run start --prefix shop",
+    "build": "npm run build --prefix client"
+  },
+  "author": "XOP EHOTOB <ХОР-ЕНОТОВ.РФ>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "md5": "^2.3.0",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7",
+    "prequest": "^1.0.0",
+    "querystring": "^0.2.1"
+  }
+}

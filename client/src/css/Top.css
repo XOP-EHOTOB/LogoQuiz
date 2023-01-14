@@ -1,0 +1,41 @@
+.top-menu {
+    margin: 5px;
+    border-radius: 8px;
+    background-color: var(--button_content);
+    padding: 5px;
+}
+
+.top-menu-header {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-menu-header {
+    margin: 0;
+}
+
+.top-menu-body {
+    border-top: 1px solid rgba(245, 245, 245, 0.26);
+    display: grid;
+    grid-template-columns: 1fr 1fr 50px;
+}
+
+.top-menu-body-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-menu-body-item > h1 {
+    font-size: 14px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+
+.top-menu-body-item > p {
+    margin: 5px 0;
+}

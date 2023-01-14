@@ -1,0 +1,101 @@
+:root {
+  --button_content: #005e8365;
+  --button_content_active: #005e83bb;
+
+  --negative-color: rgb(200, 36, 36);
+  --positive-color: rgb(30, 133, 30);
+  --warn-color: rgb(178, 162, 55);
+}
+
+.PanelHeader-content > span {
+  font-size: 20px;
+}
+
+.PanelHeader__in {
+  background-color: rgb(27, 6, 122) !important;
+  background: linear-gradient(to left top, #186288, #11435c) !important;
+  border-bottom: solid #023d55 1px !important;
+}
+
+.PanelHeader {
+  z-index: 20;
+}
+
+.Separator__in {
+  background-color: rgba(121, 121, 121, 0) !important;
+}
+
+.PanelHeaderContent__children-in {
+  color: white;
+}
+.Avatar__img {
+  z-index: 0 !important;
+}
+.PanelHeaderContent__status {
+  color: rgb(179, 179, 179);
+}
+
+.Panel__in {
+  background: rgba(0, 0, 0, 0)!important;
+}
+.Panel::after {
+  position: fixed!important;
+  background-color: var(--background_content)!important;
+  background: url(/src/img/fon.jpg) !important;
+  background-position: center!important;
+  background-repeat: no-repeat!important;
+  background-size: auto 100%!important;
+  filter: blur(3px);
+  filter: brightness(60%);
+}
+
+@media (min-width: 1024px){
+  .Panel::after {
+    background-size: 100% auto!important;
+  }
+}
+
+.Snackbar__body {
+  background: linear-gradient(to bottom right, #005e83, #006289) !important;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.08) !important;
+}
+.FixedLayout {
+  z-index: 12 !important;
+}
+.vkuiTabbarItem {
+  color: #049fdc;
+}
+.vkuiTabbarItem--selected {
+  color: #bae9ff;
+}
+.vkuiTabbar {
+  background: linear-gradient(to left top, #005e835c, #0062894c) !important;
+  background-position: center;
+  backdrop-filter: blur(2px);
+  color: #005e83!important;
+}
+
+.PanelHeader__content > span {
+  color: white !important;
+  font-size: 18px !important;
+}
+.vkuiFormField__border {
+background: var(--bacground-filter)!important;
+color: white;
+}
+
+.vkuiFormField__border[placeholder] {
+color: white!important;
+}
+
+.vkuiAlert::before {
+  background: linear-gradient(to left top, #0f4256f2, #013549c5) !important;
+}
+
+.main {
+  position: fixed;
+  top: var(--panelheader_height_android);
+  height: calc(100vh - var(--panelheader_height_android));
+  width: 100vw;
+  overflow: auto;
+}
