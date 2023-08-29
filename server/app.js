@@ -4,16 +4,35 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
+const sslChecker = require("ssl-checker");
 
 const fs = require('fs')
 const https = require('https')
 
-const options = {
+let options = {
   ca: fs.readFileSync('./server/footballcoin.ru_le2.ca'),
   crta: fs.readFileSync('./server/footballcoin.ru_le2.crtca'),
   key: fs.readFileSync('./server/footballcoin.ru_le2.key'),
   cert: fs.readFileSync('./server/footballcoin.ru_le2.crt'),
 }
+
+if (process.env.NODE_ENV != 'dev') {
+  options = {
+      ca: fs.readFileSync('../../../../../var/www/httpd-cert/www-root/footballcoin.ru_le2.ca'),
+      crta: fs.readFileSync('../../../../../var/www/httpd-cert/www-root/footballcoin.ru_le2.crtca'),
+      key: fs.readFileSync('../../../../../var/www/httpd-cert/www-root/footballcoin.ru_le2.key'),
+      cert: fs.readFileSync('../../../../../var/www/httpd-cert/www-root/footballcoin.ru_le2.crt'),
+  }
+}
+
+setInterval(() => {
+  sslChecker("footballcoin.ru", { method: "GET", port: process.env.PORT }).then(data => {
+    if (!data.valid) {
+      console.log("SSL UPDATE...");
+      process.exit()
+    }
+  });
+}, 10000)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
