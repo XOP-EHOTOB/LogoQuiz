@@ -18,6 +18,19 @@
     align-items: center;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+@media (hover:hover) {
+    .settings-menu-button:hover {
+        background: var(--button_content_hover);
+    }    
+}
+
+.settings-menu-button:active {
+    background: var(--button_content_active);
+    transform: scale(0.98);
 }
 
 .clicked:active {
@@ -27,4 +40,54 @@
 .settings-menu-button > p {
     margin: 0;
     margin-left: 5px;
+}
+
+
+.Advertisement {
+    cursor: pointer;
+    display: flex;
+    margin: 5px;
+    background-color: var(--button_content);
+    border-radius: 8px;
+    box-shadow: 0 0 8px 5px rgb(34 60 80 / 20%);
+    color: #f2f2f2;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+
+@media (hover:hover) {
+    .Advertisement:hover {
+        background: var(--button_content_hover);
+    }    
+}
+
+.Advertisement:active {
+    background: var(--button_content_active);
+    transform: scale(0.97);
+}
+
+.AdvertisementImage {
+    width: 56px;
+    height: 56px;
+}
+
+.AdvertisementInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+.AdvertisementInfo > p {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.AdvertisementInfo > span {
+    font-size: 14px;
+    font-weight: 200;
+    opacity: 0.8;
 }

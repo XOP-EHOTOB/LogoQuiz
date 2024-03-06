@@ -6,7 +6,9 @@ import { Panel, PanelHeader, Footer, Link } from '@vkontakte/vkui';
 import { Icon28Users3Outline } from '@vkontakte/icons';
 import { Icon28SettingsOutline } from '@vkontakte/icons';
 import { Icon32PollOutline } from '@vkontakte/icons';
-import { Icon24LockOutline } from '@vkontakte/icons';
+import bridge from "@vkontakte/vk-bridge"
+
+const APP_AVA = "https://sun1-21.userapi.com/impf/_YdUv-TOuFpJqDt_ZtgXysp7BNMP9gdiYUsN9g/hrJxFbBHe84.jpg?size=288x288&quality=90&sign=d09cbff52ae6c175116c5bf5f32b801c"
 
 import img from '../img/bottom_item.png'
 import request from '../hooks/useHttp'
@@ -32,19 +34,33 @@ const Home = ({ id, go }) => {
 		<div className='main-menu'>
 			<div>
 				<div className='main-menu-items' data-to='game' onClick={go}>Играть</div>
-				<div className='main-menu-items' style={{ position: 'relative' }}>
-					<div style={{ 
-						position: 'absolute', display: 'flex',
-						left: 0, top: 0, borderRadius: '8px',
-						width: '100%', height: '100%',
-						background: 'rgba(0, 0, 0, 0.50)', 
-						alignItems: 'center', justifyContent: 'center'
-					}}>
-						<Icon24LockOutline />
-					</div>
-					Дополнительные уровни
-				</div>
 				<div className='main-menu-items' data-to='shop' onClick={go}>Получить подстказки</div>
+
+				<div 
+					style={{ margin: '10px'}}
+					className='Advertisement' 
+					onClick={() => {
+						bridge.send('VKWebAppOpenApp', {
+							app_id: 8175004,
+						}).catch(() => {
+							let link = document.createElement('a')
+							link.href = 'https://vk.com/quiz_footballcoin';
+							link.target = "_blank"
+							document.body.appendChild(link);
+							link.click();
+						}) 
+					}}
+				>
+					<img 
+						className='AdvertisementImage'
+						src={APP_AVA}
+						alt='Logo Quiz'
+					/>
+					<div className='AdvertisementInfo'>
+						<p>Football Quiz</p>
+						<span>Угадывай футбольные команды</span>
+					</div>
+				</div>
 			</div>
 
 			<div className='bottom-menu'>

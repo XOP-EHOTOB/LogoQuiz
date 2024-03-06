@@ -6,7 +6,7 @@ const securityKey = (req) => {
 
   let paramsHash = md5(urlParams.api_id + '_' + urlParams.viewer_id + '_' + process.env.SECRET_KEY)
     
-  return paramsHash === urlParams.auth_key.replace(/(")/gi, '')
+  return paramsHash === urlParams?.auth_key?.replace(/(")/gi, '')
 }
 
 module.exports = securityKey

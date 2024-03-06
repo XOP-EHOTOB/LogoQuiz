@@ -24,6 +24,7 @@
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "prequest": "^1.0.0",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "ssl-checker": "^2.0.8"
   }
 }

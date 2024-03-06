@@ -11,11 +11,14 @@ import { Icon16VideoAdvertisement } from '@vkontakte/icons';
 import { Icon20UsersOutline } from '@vkontakte/icons';
 import { Icon28ShareExternalOutline } from '@vkontakte/icons';
 import { Icon20ShoppingCartOutline } from '@vkontakte/icons';
+import useSound from 'use-sound';
+import bonus from '../mp3/bonus.mp3'
 
 const Shop = ({ id, go }) => {
     const [snackbar, setSnackbar] = useState(null)
     const user = useSelector(state => state.user.user)
     const dispatch = useDispatch()
+    const [playBonus] = useSound(bonus);
 
     const showideo = () => {
         bridge.send('VKWebAppCheckNativeAds', { ad_format: 'reward' }).then((data) => { 
@@ -28,6 +31,7 @@ const Shop = ({ id, go }) => {
                             if (data.error) throw new Error(data.error || 'Ошибка сервера!')
                             dispatch({type: 'SET_USER', data: {...data.user, photo_200: user.photo_200}})
                             setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text='Вы получили 2 подсказки!'/>)
+                            if (user.sound) playBonus()
                         }).catch(e => {
                             setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text={e.message || 'Ошибка сервера'}/>)
                         })
@@ -52,6 +56,7 @@ const Shop = ({ id, go }) => {
                     if (data.error) throw new Error(data.error || 'Ошибка сервера!')
                     dispatch({type: 'SET_USER', data: {...data.user, photo_200: user.photo_200}})
                     setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text='Вы получили 20 подсказок!'/>)
+                    if (user.sound) playBonus()
                 }).catch(e => {
                     setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text={e.message || 'Ошибка сервера'}/>)
                 })
@@ -65,8 +70,8 @@ const Shop = ({ id, go }) => {
 
     const shere = async () => {
         bridge.send('VKWebAppShowWallPostBox', {
-            message: 'Угадывай футбольные логотипы по логотипам используя свои знания в футболе!',
-            attachments: 'https://vk.com/quiz_footballcoin'
+            message: 'Угадывай названия популярных компаний по логотипам!',
+            attachments: 'https://vk.com/logo_quiz_game'
             })
             .then((data) => { 
               if (data.post_id) {
@@ -76,6 +81,7 @@ const Shop = ({ id, go }) => {
                     if (data.error) throw new Error(data.error || 'Ошибка сервера!')
                     dispatch({type: 'SET_USER', data: {...data.user, photo_200: user.photo_200}})
                     setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text='Вы получили 20 подсказок!'/>)
+                    if (user.sound) playBonus()
                 }).catch(e => {
                     setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text={e.message || 'Ошибка сервера'}/>)
                 })
@@ -97,6 +103,7 @@ const Shop = ({ id, go }) => {
             .then((data) => {
               if (data.success) {
                 setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='sucess' text={`Успешно! Начислено - ${items} голосов`}/>)
+                if (user.sound) playBonus()
             }})
             .catch((error) => {
                 setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text='Произошла неизвестная ошибка!'/>)

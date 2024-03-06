@@ -16,16 +16,23 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    margin: 5px;
+    margin: 10px;
     padding: 10px;
     position: relative;
     text-align: center;
     text-transform: uppercase;
+    transition: 0.2s;
+}
+
+@media (hover:hover) {
+    .main-menu-items:hover {
+        background: var(--button_content_hover);
+    }    
 }
 
 .main-menu-items:active {
     background: var(--button_content_active);
-    transition: 0.2s;
+    transform: scale(0.97);
 }
 
 .bottom-menu {
@@ -77,6 +84,18 @@
     border-radius: 8px;
     align-items: center;
     justify-content: center;
+    transition: .2s;
+}
+
+@media (hover: hover) {
+    .bulb-item:hover {
+        background: var(--button_content_hover);
+    }
+}
+
+.bulb-item:active {
+    background: var(--button_content);
+    transform: scale(0.97);
 }
 
 .favorite-item > p {

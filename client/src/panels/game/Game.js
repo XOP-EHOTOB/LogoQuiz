@@ -14,6 +14,9 @@ import { Icon20ViewCircleFillRed } from '@vkontakte/icons';
 
 import win_sound from './win.mp3'
 import lose_sound from './lose.mp3'
+import tap1 from '../../mp3/tap1.mp3'
+import tap2 from '../../mp3/tap2.mp3'
+import _help from '../../mp3/help.mp3'
 
 const Game = ({ id, go, setPopout }) => {
     const user = useSelector(state => state.user.user)
@@ -27,6 +30,9 @@ const Game = ({ id, go, setPopout }) => {
     const [restart, setRestart] = useState(false)
     const [playWin] = useSound(win_sound);
     const [playLose] = useSound(lose_sound);
+    const [playTap1] = useSound(tap1);
+    const [playTap2] = useSound(tap2);
+    const [playHelp] = useSound(_help);
 
     useEffect(() => {
         request('get_game', "POST", {
@@ -62,6 +68,7 @@ const Game = ({ id, go, setPopout }) => {
             } else {
                 dispatch({type: 'SET_USER', data: {...user, ...data.user}})
                 setRestart(!restart)
+                if (user.sound) playHelp()
             }
         }).catch(e => {
             setSnackbar(<SnackbarItem setSnackbar={setSnackbar} code='error' text={e.message || 'Ошибка сервера'}/>)
@@ -135,6 +142,7 @@ const Game = ({ id, go, setPopout }) => {
                 backgroundColor:  x === ' ' | x === '-' ? 'var(--button_content)' : null
             }} onClick={() => {
                 if (x === ' ' | x === '-') return
+                if (user.sound) playTap2()
                 unsetWord(key)
             }}>
                 {x === '0' ? ' ' : x}
@@ -149,6 +157,7 @@ const Game = ({ id, go, setPopout }) => {
                 backgroundColor:  x === ' ' | x === '-' ? 'var(--button_content)' : null
             }} onClick={() => {
                 if (x === '0') return
+                if (user.sound) playTap1()
                 setWord(key)
             }}>
                 {x === '0' ? ' ' : x}
@@ -161,9 +170,11 @@ const Game = ({ id, go, setPopout }) => {
             <div className='game-keyboard'>{item2}</div>
         </div>)
 
-        if (words.length > 0 && user.games[user.active_lvl].find(x => x.id === user.active_game).name) {
+        const solution = user.games[user.active_lvl].find(x => x.id === user.active_game).name
+
+        if (words.length > 0 && solution) {
             if (stopGame) return
-            setWords(user.games[user.active_lvl].find(x => x.id === user.active_game).name.split(''))
+            setWords(solution.split(''))
             setStopGame(true)
             if (user.sound) { playWin() }
             if (user.vibration) {
@@ -179,15 +190,28 @@ const Game = ({ id, go, setPopout }) => {
                 <div className="firework"></div>
                 <div className="firework"></div>
 
-            <div className='win-panel-text'>
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-12 text-center">
-                      <h3 className="animate-charcter">Победа!</h3>
+                <div className='GameResult'>
+                    <div className='GameResultCard'>
+                        <p>Правильный ответ</p>
+                        <h1>{solution}</h1>
                     </div>
-                  </div>
+                    <div 
+                        className='main-menu-items'
+                        style={{ width: '100%', boxSizing: 'border-box', maxWidth: '350px'}}
+                    >
+                        Продолжить
+                    </div>
                 </div>
-            </div>
+
+                <div className='win-panel-text'>
+                    <div className="win-panel-text-container">
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <h3 className="animate-charcter">Победа!</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>)
         }

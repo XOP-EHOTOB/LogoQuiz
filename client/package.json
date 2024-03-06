@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development PORT=10888 HTTPS=true react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "vk-miniapps-deploy"
+    "build": "GENERATE_SOURCEMAP=false react-scripts build"
   },
   "engines": {
     "node": ">=12.0.0"

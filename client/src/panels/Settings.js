@@ -15,6 +15,8 @@ import { Icon24CrownCircleFillVkDating } from '@vkontakte/icons';
 import { Icon28ServicesCircleFillBlue } from '@vkontakte/icons';
 import { Icon28RepostCircleFillGreen } from '@vkontakte/icons';
 
+const APP_IMAGE = 'https://sun1-30.userapi.com/impf/0xS2TBa6-ifqOeiD8i-8YX1Q20gWHDcvys4rbg/3QQ6Mru6S9M.jpg?size=278x278&quality=90&sign=a035116920a68dda909a5e3f6458ffa5'
+
 const Settings = ({ id, go }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
@@ -105,6 +107,33 @@ const Settings = ({ id, go }) => {
 
         </div>
 
+        <div className='settings-menu'>
+        <p>Может пригодиться</p>
+        <div 
+            style={{ margin: '10px'}}
+            className='Advertisement' 
+            onClick={() => {
+			    bridge.send('VKWebAppOpenApp', {
+				    app_id: 7790406,
+			    }).catch(() => {
+                    let link = document.createElement('a')
+                    link.href = 'https://vk.com/cclinks';
+                    link.target = "_blank"
+                    document.body.appendChild(link);
+                    link.click();
+                }) 
+		}}>
+		    <img 
+			    className='AdvertisementImage'
+			    src={APP_IMAGE}
+			    alt='Logo Quiz'
+		    />
+			<div className='AdvertisementInfo'>
+				<p>Сокращение ссылок</p>
+				<span>Из сложной в простую</span>
+			</div>
+		</div>
+        </div>
 
         <Footer>v 2.0.0</Footer>
         {snackbar}

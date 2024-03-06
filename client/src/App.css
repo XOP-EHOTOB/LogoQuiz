@@ -1,10 +1,16 @@
 :root {
   --button_content: #007f8365;
-  --button_content_active: #006083bb;
+  --button_content_active: #026a90bb;
+  --button_content_hover: #0276a0bb;
 
   --negative-color: rgb(200, 36, 36);
   --positive-color: rgb(30, 133, 30);
   --warn-color: rgb(178, 162, 55);
+}
+
+#root, body, html {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .PanelHeader-content > span {
@@ -41,7 +47,7 @@
 .Panel::after {
   position: fixed!important;
   background-color: var(--background_content)!important;
-  background: url(/src/img/fon.jpg) !important;
+  background: url(/src/img/fon.svg) !important;
   background-position: center!important;
   background-repeat: no-repeat!important;
   background-size: auto 100%!important;
