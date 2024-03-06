@@ -37,10 +37,34 @@ const App = () => {
 				url: document.location.search,
 			})
 
+			if (!userData.user.don) {
+				bridge.send('VKWebAppShowBannerAd', {
+					banner_location: 'bottom'
+				}).catch((error) => console.error(error));
+			}
+
 			dispatch({type: 'SET_USER', data: {...user, ...userData.user}})
 
 			setUser(user);
 			setPopout(null);
+
+			try {
+				let recommendation = (await bridge.send('VKWebAppStorageGet', {keys: ['recommendation']})).keys
+				if (!recommendation?.[0]?.value) {
+					bridge.send('VKWebAppStorageSet', {
+						key: 'recommendation',
+						value: 'true'
+					})
+
+					bridge.send('VKWebAppRecommend').then(data => {
+						console.log(data);
+					}).catch(e => {
+						console.error(e);
+					})
+				}
+			} catch (e) {
+				console.error(e);
+			}
 		}
 		fetchData();
 	}, []);
